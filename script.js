@@ -1,6 +1,6 @@
 $('.avanti').on('click', function(){
-  
-  var immagineAttiva = $('.slider img.active');
+  Slide($(".slider"), "N")
+/*   var immagineAttiva = $('.slider img.active');
 
   immagineAttiva.removeClass('active');
 
@@ -17,25 +17,64 @@ $('.avanti').on('click', function(){
     $('.slider img').first().addClass('active');
 	
   }
-
+ */
 });
 
 $('.indietro').on('click',function(){
-	
-  var immagineAttiva = $('.slider img.active');
+	Slide($(".slider"), "p")
+  //var immagineAttiva = $('.slider img.active');
+//
+  //immagineAttiva.removeClass('active');
+//
+  //var immaginePrecedente = immagineAttiva.prev();
+  //
+  //console.log(immaginePrecedente)
+  //
+  //if (immaginePrecedente.length != 0) {
+	//  
+  //  immaginePrecedente.addClass('active');
+	//
+  //} else {
+	//  
+  //  $('.slider img').last().addClass('active');
+  //}
+});
 
-  immagineAttiva.removeClass('active');
+$(() => {
+  setInterval(()=>{
+    Slide($(".slider"), "N")
+  }, 3000)
+})
 
-  var immaginePrecedente = immagineAttiva.prev();
+function Slide(selector, direction){
   
-  console.log(immaginePrecedente)
+  var active = selector.find('img.active');
+
+  active.removeClass('active');
+  var nextImage;
+  if(direction === "N"){
+    nextImage = active.next();
+  }
+  else{
+    nextImage = active.prev();
+
+  }
+console.log(nextImage)
   
-  if (immaginePrecedente.length != 0) {
+  if (nextImage.length != 0) {
 	  
-    immaginePrecedente.addClass('active');
+    nextImage.addClass('active');
 	
   } else {
-	  
-    $('.slider img').last().addClass('active');
+    var images = selector.find('img');
+    if(direction === "N"){
+      images.first().addClass('active');
+    }
+    else{
+      images.last().addClass('active');
+  
+    }
+    //selector.find('img').first().addClass('active');
+	
   }
-});
+}
