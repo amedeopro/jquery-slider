@@ -1,22 +1,41 @@
-$('.avanti').click(function(){
+$('.avanti').on('click', function(){
+  
   var immagineAttiva = $('.slider img.active');
 
-  $('.slider img').removeClass('active');
+  immagineAttiva.removeClass('active');
 
-  var prossimaImmagine = immagineAttiva.next('img');
-
+  var prossimaImmagine = immagineAttiva.next();
+  
+  console.log(prossimaImmagine)
+  
   if (prossimaImmagine.length != 0) {
-    immagineAttiva.addClass('active');
+	  
+    prossimaImmagine.addClass('active');
+	
   } else {
+	  
     $('.slider img').first().addClass('active');
+	
   }
 
 });
 
-$('.indietro').click(function(){
-  var immagineAttiva = $('.active');
+$('.indietro').on('click',function(){
+	
+  var immagineAttiva = $('.slider img.active');
 
-  $('.slider img').removeClass('active');
+  immagineAttiva.removeClass('active');
 
-  immagineAttiva.prev('img').addClass('active');
+  var immaginePrecedente = immagineAttiva.prev();
+  
+  console.log(immaginePrecedente)
+  
+  if (immaginePrecedente.length != 0) {
+	  
+    immaginePrecedente.addClass('active');
+	
+  } else {
+	  
+    $('.slider img').last().addClass('active');
+  }
 });
